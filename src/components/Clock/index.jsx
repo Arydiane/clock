@@ -48,6 +48,15 @@ export default function Clock() {
     function updateTime() {
         now = new Date()
         setTime(now.toLocaleTimeString())
+
+        if (now.getDate() !== currentDate.day || now.getMonth() !== currentDate.month) {
+            setcurrentDate({
+                day: now.getDate(),
+                month: now.getMonth(),
+                year: now.getFullYear(),
+                dayWeek: now.getDay()
+            })
+        }
     }
 
     function greetingMessage(hour) {
@@ -93,7 +102,6 @@ export default function Clock() {
                     style={{ backgroundColor: time.slice(0, 2) < 18 ? "$background-day" : "$background-night" }}
                 >
                     <div className={styles.information__container}>
-
                         <p className={styles.information__text}>Fuso horário: <span>{location.timezone}</span></p>
                         <p className={styles.information__text}>Dia da semana: <span>{daysWeek[currentDate.dayWeek]}</span></p>
                         <p className={styles.information__text}>Data: <span>{currentDate.day} de {months[currentDate.month]} de {currentDate.year}</span></p>
