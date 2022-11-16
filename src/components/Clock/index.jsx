@@ -10,7 +10,24 @@ export default function Clock() {
     const [time, setTime] = useState(() => { return now.toLocaleTimeString() })
     const [location, setLocation] = useState(() => { return { city: "procurando localização", countryCode: "" } })
 
-
+    useEffect(() => {
+        const api = async () => {
+            const response = await fetch('http://ip-api.com/json/?fields=status,countryCode,regionName,city,timezone,query')
+            const data = await response.json()
+            if (data.status === 'success') {
+                setLocation({
+                    city: data.city,
+                    countryCode: data.countryCode
+                })
+            } else {
+                setLocation({
+                    city: "local desconhecido",
+                    countryCode: ""
+                })
+            }
+        }
+        api()
+    }, [])
 
     function updateTime() {
         now = new Date()
@@ -43,7 +60,9 @@ export default function Clock() {
                     {greetingMessage(time.slice(0, 2))}
                 </p>
                 <p className={styles.clock__time}>{time}</p>
-                <p className={styles.clock__location}> em {location.city}, {location.countryCode}</p>
+                <p className={styles.clock__location}> 
+                    em {location.city}, {location.countryCode}
+                </p>
             </div>
         </section>
     )
