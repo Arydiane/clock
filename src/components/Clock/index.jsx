@@ -3,6 +3,7 @@ import styles from "./Clock.module.scss"
 import backgroundDay from "assets/images/day-medium.jpg"
 import backgroundNight from "assets/images/night-medium.jpg"
 import { MdDarkMode, MdWbSunny } from "react-icons/md";
+import {IoIosArrowDropdownCircle, IoIosArrowDropupCircle } from "react-icons/io"
 
 export default function Clock() {
 
@@ -21,6 +22,7 @@ export default function Clock() {
             dayWeek: now.getDay()
         }
     })
+    const [showInformation, setshowInformation] = useState(() => {return false})
 
     useEffect(() => {
         const api = async () => {
@@ -62,6 +64,10 @@ export default function Clock() {
         return message
     }
 
+    function changeInformation(){
+        setshowInformation(!showInformation)
+    }
+
     setInterval(updateTime, 1000)
 
     return (
@@ -78,17 +84,20 @@ export default function Clock() {
                     <p className={styles.clock__location}>
                         em {location.city}, {location.countryCode}
                     </p>
+                    <button className={styles.clock__btn} onClick={changeInformation}>
+                        {showInformation ? <> Ocultar <IoIosArrowDropupCircle size={32} /></> :  <> Exibir <IoIosArrowDropdownCircle size={32} /></> }
+                    </button>
                 </div>
                 <article
-                    className={styles.information}
+                    className={ showInformation ? `${styles.information}` : `${styles.information} ${styles.invisible}`}
                     style={{ backgroundColor: time.slice(0, 2) < 18 ? "$background-day" : "$background-night" }}
                 >
                     <div className={styles.information__container}>
+
                         <p className={styles.information__text}>Fuso horário: <span>{location.timezone}</span></p>
                         <p className={styles.information__text}>Dia da semana: <span>{daysWeek[currentDate.dayWeek]}</span></p>
                         <p className={styles.information__text}>Data: <span>{currentDate.day} de {months[currentDate.month]} de {currentDate.year}</span></p>
                     </div>
-
                 </article>
             </section>
 
