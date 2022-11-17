@@ -2,10 +2,10 @@
 
 .clock {
     background-color: $background-night;
-    height: 100vh;
     background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;
 
     &__container {
         padding: 2rem 1rem;
@@ -48,7 +48,6 @@
 
     .information {
         display: block;
-        background-color: $background-night;
         padding: 2rem 1rem;
         height: 50%;
         display: flex;
@@ -73,6 +72,16 @@
                 font-size: 1rem;
             }
         }
+    }
+
+    .day {
+        background-color: $background-day;
+        color: $background-night;
+    }
+
+    .night {
+        background-color: $background-night;
+        color: $text-color;
     }
 
     .invisible {

@@ -4,8 +4,12 @@ $font-light: 'Raleway', sans-serif;
 
 //colors
 $text-color: #ffffff;
-$background-day: #bfced3ba; 
+$background-day: #bfced3ec; 
 $background-night: #0a1626c8;
 
 //$background-day: #BFCED3;  
 //$background-night: #0A1626; 
+
+//breakpoints
+$break-medium: 767px;
+$break-large: 1199px;

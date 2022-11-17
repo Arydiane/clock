@@ -7,8 +7,24 @@
     box-sizing: border-box;
 }
 
-body {
-    height: 100vh;
-    font-family: $font-light;
-    color: $text-color;
+html {
+    
+    @media screen {
+        @media (min-width: $break-medium) {
+            font-size: 1.2rem;
+        }
+
+        @media (min-width: $break-large) {
+            font-size: 1.5rem;
+        }
+    }
+
+    body {
+        height: 100vh;
+        font-family: $font-light;
+        color: $text-color;
+    }
 }
+
+
+

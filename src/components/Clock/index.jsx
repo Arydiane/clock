@@ -48,6 +48,7 @@ export default function Clock() {
     function updateTime() {
         now = new Date()
         setTime(now.toLocaleTimeString())
+        //setTime("08:21:45")
 
         if (now.getDate() !== currentDate.day || now.getMonth() !== currentDate.month) {
             setcurrentDate({
@@ -99,7 +100,10 @@ export default function Clock() {
                 </div>
                 <article
                     className={ showInformation ? `${styles.information}` : `${styles.information} ${styles.invisible}`}
-                    style={{ backgroundColor: time.slice(0, 2) < 18 ? "$background-day" : "$background-night" }}
+                    style={{
+                        backgroundColor: time.slice(0, 2) < 18 ? "#bfced3ec" : "#0a1626c8", 
+                        color: time.slice(0, 2) < 18 ? "#0a1626c8" : "#bfced3ec"
+                    }}
                 >
                     <div className={styles.information__container}>
                         <p className={styles.information__text}>Fuso horário: <span>{location.timezone}</span></p>
