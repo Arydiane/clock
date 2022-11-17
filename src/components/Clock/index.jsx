@@ -3,7 +3,7 @@ import styles from "./Clock.module.scss"
 import backgroundDay from "assets/images/day-medium.jpg"
 import backgroundNight from "assets/images/night-medium.jpg"
 import { MdDarkMode, MdWbSunny } from "react-icons/md";
-import {IoIosArrowDropdownCircle, IoIosArrowDropupCircle } from "react-icons/io"
+import { IoIosArrowDropdownCircle, IoIosArrowDropupCircle } from "react-icons/io"
 
 export default function Clock() {
 
@@ -22,7 +22,7 @@ export default function Clock() {
             dayWeek: now.getDay()
         }
     })
-    const [showInformation, setshowInformation] = useState(() => {return false})
+    const [showInformation, setshowInformation] = useState(() => { return false })
 
     useEffect(() => {
         const api = async () => {
@@ -48,7 +48,6 @@ export default function Clock() {
     function updateTime() {
         now = new Date()
         setTime(now.toLocaleTimeString())
-        //setTime("08:21:45")
 
         if (now.getDate() !== currentDate.day || now.getMonth() !== currentDate.month) {
             setcurrentDate({
@@ -74,8 +73,21 @@ export default function Clock() {
         return message
     }
 
-    function changeInformation(){
+    function changeInformation() {
         setshowInformation(!showInformation)
+    }
+
+    function classInformation() {
+        if (showInformation) {
+
+            if (time.slice(0, 2) < 18) {
+                return `${styles.information} ${styles.day}`
+            } else {
+                return `${styles.information} ${styles.night}`
+            }
+        } else {
+            return `${styles.information} ${styles.invisible}`
+        }
     }
 
     setInterval(updateTime, 1000)
@@ -95,16 +107,10 @@ export default function Clock() {
                         em {location.city}, {location.countryCode}
                     </p>
                     <button className={styles.clock__btn} onClick={changeInformation}>
-                        {showInformation ? <> Ocultar <IoIosArrowDropupCircle size={32} /></> :  <> Exibir <IoIosArrowDropdownCircle size={32} /></> }
+                        {showInformation ? <> Ocultar <IoIosArrowDropupCircle size={32} /></> : <> Exibir <IoIosArrowDropdownCircle size={32} /></>}
                     </button>
                 </div>
-                <article
-                    className={ showInformation ? `${styles.information}` : `${styles.information} ${styles.invisible}`}
-                    style={{
-                        backgroundColor: time.slice(0, 2) < 18 ? "#bfced3ec" : "#0a1626c8", 
-                        color: time.slice(0, 2) < 18 ? "#0a1626c8" : "#bfced3ec"
-                    }}
-                >
+                <article className={classInformation()}>
                     <div className={styles.information__container}>
                         <p className={styles.information__text}>Fuso horário: <span>{location.timezone}</span></p>
                         <p className={styles.information__text}>Dia da semana: <span>{daysWeek[currentDate.dayWeek]}</span></p>
