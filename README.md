@@ -1,6 +1,6 @@
 # Projeto App Clock
 
-É um aplicativo de relógio e foi inspirado no Clock app do Frontend Mentor porém possui modificações. Apresenta a hora atual e informações de localização com base no endereço IP, para isto faz uso da IP-API (https://ip-api.com/docs). 
+É um aplicativo de relógio e foi inspirado no Clock app do Frontend Mentor porém possui modificações. Apresenta a hora atual e informações de localização com base no endereço IP, para isto faz uso da [IP-API](https://ip-api.com/docs). 
 
 No estado expandido exibe informações adicionais como: fuso horário, data completa e dia da semana. 
 Altera a saudação inicial, background e as cores de acordo com o horário do dia ou noite. 
